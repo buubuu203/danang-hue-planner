@@ -1,0 +1,12 @@
+{
+  "name": "Miền Trung · 08/2026",
+  "short_name": "Trip ĐN–Huế",
+  "description": "Lịch trình Đà Nẵng – Hội An – Huế tháng 8/2026",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff37a5",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
