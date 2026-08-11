@@ -796,7 +796,75 @@ body {
   .tl-time { padding: 18px 16px 18px 24px }
   .tl-body { padding: 18px 32px }
 }
-.accordion { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border-2) }
+/* ═══════════════ PACK TAB ═══════════════ */
+.pack-event {
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.pack-event-head {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-3);
+}
+.pack-event-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px }
+.pack-event-info { flex: 1 }
+.pack-event-name {
+  font-size: var(--text-sm); font-weight: var(--fw-semibold);
+  color: var(--fg-primary); margin-bottom: 3px;
+}
+.pack-event-meta { font-size: var(--text-xs); color: var(--fg-secondary); line-height: 1.5 }
+.pack-event-badge {
+  font-size: 10px; font-weight: var(--fw-semibold);
+  padding: 3px 10px; border-radius: var(--r-full);
+  border: 1px solid; white-space: nowrap; flex-shrink: 0; align-self: flex-start;
+}
+.pb-casual { color: var(--fg-success);  background: var(--bg-success-subtle); border-color: #bbf7d0 }
+.pb-smart  { color: #1d4ed8;            background: var(--bg-info-subtle);    border-color: #bfdbfe }
+.pb-formal { color: var(--fg-orange);   background: var(--bg-orange-subtle);  border-color: #fed7aa }
+.pb-dress  { color: var(--fg-brand);    background: var(--bg-brand-subtle);   border-color: var(--cake-pink-200) }
+.pb-beach  { color: var(--fg-teal);     background: var(--bg-teal-subtle);    border-color: #99f6e4 }
+.pack-body { padding: 14px 16px }
+.pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px }
+@media(max-width:480px) { .pack-grid { grid-template-columns: 1fr; gap: 12px } }
+.pack-person-name {
+  font-size: 10px; font-weight: var(--fw-semibold);
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--fg-brand); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.pack-person-name::after { content: ''; flex: 1; height: 1px; background: var(--border-3) }
+.pack-list { list-style: none; display: flex; flex-direction: column; gap: 4px }
+.pack-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: var(--text-xs); color: var(--fg-primary);
+  cursor: pointer; padding: 3px 0; user-select: none;
+}
+.pack-cb {
+  width: 15px; height: 15px; flex-shrink: 0; margin-top: 1px;
+  border: 1.5px solid var(--border-1); border-radius: 4px;
+  background: var(--bg-surface-1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; transition: background .15s, border-color .15s;
+}
+.pack-item.pkd .pack-cb { background: var(--cake-pink-500); border-color: var(--cake-pink-500); color: #fff }
+.pack-item.pkd .pack-text { text-decoration: line-through; color: var(--fg-tertiary) }
+.pack-text { line-height: 1.5 }
+.pack-tip {
+  margin-top: 10px; padding: 7px 10px;
+  background: var(--bg-warning-subtle); border: 1px solid #fef08a;
+  border-radius: var(--r-sm); font-size: 11px; color: #92400e; line-height: 1.5;
+}
+@media (prefers-color-scheme: dark) {
+  .pack-tip { background: var(--bg-warning-subtle); border-color: #4a3200; color: #fcd34d }
+  .pack-cb { background: var(--bg-surface-2); border-color: var(--border-1) }
+  .pack-item.pkd .pack-cb { background: var(--cake-pink-500); border-color: var(--cake-pink-500) }
+}
+
+/* ═══════════════ ACCORDION ═══════════════ */
 .acc-btn {
   width: 100%; display: flex; justify-content: space-between; align-items: center;
   padding: 10px 12px; background: var(--bg-surface-2);
@@ -850,6 +918,7 @@ body {
     <a class="ntab"    href="#" role="tab" aria-selected="false" onclick="return go('food',this)"  aria-controls="tab-food">🍜 Ăn uống</a>
     <a class="ntab"    href="#" role="tab" aria-selected="false" onclick="return go('cost',this)"  aria-controls="tab-cost">💰 Chi phí</a>
     <a class="ntab"    href="#" role="tab" aria-selected="false" onclick="return go('chk',this)"   aria-controls="tab-chk">✅ Checklist</a>
+    <a class="ntab"    href="#" role="tab" aria-selected="false" onclick="return go('pack',this)"  aria-controls="tab-pack">🎒 Soạn đồ</a>
   </div>
 </nav>
 
@@ -915,7 +984,7 @@ body {
       <div class="tl-time"><span class="tt">Sáng</span></div>
       <div class="tl-body">
         <div class="tl-title">☀ Chuẩn bị + ra sân bay</div>
-        <p class="tl-desc">Tự túc ăn sáng. Chuẩn bị CCCD, vé VietJet (mã đặt chỗ trong app/email). Ra sân bay sớm — có hành lý ký gửi 20kg nên phải ra quầy drop baggage.</p>
+        <p class="tl-desc">Tự túc ăn sáng. Chuẩn bị CCCD, vé VietJet mã đặt chỗ <strong>54S7Q9</strong>. Ra sân bay sớm — có hành lý ký gửi 20kg nên phải ra quầy drop baggage.</p>
         <div class="cbox cb-note">📌 <strong>VietJet Air · Nhà ga 1, Sân bay Tân Sơn Nhất</strong> · Có mặt trước giờ bay ít nhất <strong>90 phút</strong> (tức ~17:00) · Ghế <strong>7A &amp; 7B</strong> đã assigned sẵn — không cần chọn lại</div>
         <!-- CHECK-IN ONLINE ACCORDION -->
         <div class="accordion" style="margin-top:10px">
@@ -935,7 +1004,7 @@ body {
             </ol>
             <div class="acc-divider"></div>
             <div class="acc-section-title">📱 Muốn check-in online trước (tuỳ chọn)</div>
-            <p class="acc-text">App VietJet → Quản lý đặt chỗ → nhập mã đặt chỗ → check-in. Mở trước <strong>3 ngày</strong>, đóng <strong>1h trước giờ bay</strong>. Vẫn phải ra quầy gửi hành lý sau đó.</p>
+            <p class="acc-text">App VietJet → Quản lý đặt chỗ → nhập mã đặt chỗ <strong>54S7Q9</strong> → check-in. Mở trước <strong>3 ngày</strong>, đóng <strong>1h trước giờ bay</strong>. Vẫn phải ra quầy gửi hành lý sau đó.</p>
           </div>
         </div>
       </div>
@@ -952,8 +1021,8 @@ body {
       <div class="tl-time"><span class="tt">~20:30</span></div>
       <div class="tl-body">
         <div class="tl-title">🏨 Check-in Melia Vinpearl Riverfront</div>
-        <p class="tl-desc">331 Trần Hưng Đạo, An Hải · 5★ · <strong>Phòng 42</strong></p>
-        <p class="tl-desc" style="margin-top:4px">WiFi: Room Number = <strong>42</strong> + Last Name = họ của bạn · Gọi lễ tân: phím <strong>1</strong> · Liên phòng: <strong>8 + số phòng</strong></p>
+        <p class="tl-desc">331 Trần Hưng Đạo, An Hải · 5★ · <strong>Jasmine: Phòng 42 · Anh Thái: Phòng 76</strong></p>
+        <p class="tl-desc" style="margin-top:4px">WiFi phòng 42: Room Number = <strong>42</strong> + Last Name = họ của bạn · Gọi lễ tân: phím <strong>1</strong> · Liên phòng: <strong>8 + số phòng</strong></p>
         <div class="cbox cb-note">🍳 Buffet sáng RUMBA (Tầng M) · <strong>06:00–09:30</strong> · Company pays</div>
         <div class="cbox cb-info" style="margin-top:5px">🌤 Thời tiết tháng 8 ĐN: nắng nóng ~33–35°C ban ngày · cuối tháng 7–8 là giao mùa, có thể mưa chiều/tối bất chợt — <strong>nhớ mang ô gọn &amp; dép xỏ ngón</strong> phòng khi dạo phố tối hoặc đi biển</div>
       </div>
@@ -979,7 +1048,7 @@ body {
     <div class="dc-head">
       <span class="dc-badge db-red">Thứ 5 · 13/08</span>
       <span class="dc-title">War Room D1 + C-Games + Sky Night</span>
-      <span class="dc-sub">Xe 5 · Melia Phòng 42</span>
+      <span class="dc-sub">Xe 5 · Phòng 42</span>
     </div>
     <div class="tl-entry">
       <div class="tl-time"><span class="tt">06:00</span></div>
@@ -1001,7 +1070,8 @@ body {
       <div class="tl-time"><span class="tt">11:00</span></div>
       <div class="tl-body">
         <div class="tl-title">🍽 Ăn trưa — covered by đoàn Cake</div>
-        <p class="tl-desc">4U Seafood Restaurant · Số 2 Võ Nguyên Giáp, An Hải · Di chuyển bằng xe đoàn số 5.</p>
+        <p class="tl-desc">4U Seafood Restaurant · Số 2 Võ Nguyên Giáp, An Hải · Di chuyển bằng <strong>Xe 5</strong>.</p>
+        <div class="cbox cb-note">📞 Xe 5 — Trưởng xe: <strong>Nga Lê</strong> · 0397821126 · HDV: <strong>Tùng Lê</strong> · 0902093935</div>
       </div>
     </div>
     <div class="tl-entry">
@@ -1032,7 +1102,7 @@ body {
     <div class="dc-head">
       <span class="dc-badge db-red">Thứ 6 · 14/08</span>
       <span class="dc-title">War Room D2 + Spotlight Night</span>
-      <span class="dc-sub">Melia Phòng 42 · Last night</span>
+      <span class="dc-sub">Phòng 42 · Last night cùng đoàn</span>
     </div>
     <div class="tl-entry">
       <div class="tl-time"><span class="tt">06:00</span></div>
@@ -1067,7 +1137,7 @@ body {
       <div class="tl-time"><span class="tt">18:30</span></div>
       <div class="tl-body">
         <div class="tl-title">🎉 Spotlight Night · The Holiday Beach Club</div>
-        <p class="tl-desc">Buffet BBQ · 300 Võ Nguyên Giáp, Ngũ Hành Sơn · 18:30–22:00 · Đêm tiệc chính company trip · Xe số 5.</p>
+        <p class="tl-desc">Buffet BBQ · 300 Võ Nguyên Giáp, Ngũ Hành Sơn · 18:30–22:00 · Đêm tiệc chính company trip · <strong>Xe 5</strong> đưa đón.</p>
       </div>
     </div>
   </div>
@@ -1391,7 +1461,7 @@ body {
   <div class="cost-card sr">
     <div class="cost-head"><span class="dc-badge db-blue">Cố định</span><span class="cost-head-title">Đã xác nhận</span></div>
     <div class="cr"><div class="cr-left"><div class="cr-label">✈ VJ-642 · SGN→DAD · 12/08 18:30 · Ghế 7A&7B · Hành lý 20kg · Tự túc</div><span class="cr-who wm">Bà chã hơm</span></div><div class="cr-amt">—</div></div>
-    <div class="cr"><div class="cr-left"><div class="cr-label">🏨 Melia Vinpearl Riverfront · 12–15/08 · Phòng 42 · Buffet sáng RUMBA 06:00–09:30 · Checkout đúng 10:30</div><span class="cr-who wco">Company pays</span></div><div class="cr-amt">—</div></div>
+    <div class="cr"><div class="cr-left"><div class="cr-label">🏨 Melia Vinpearl Riverfront · 12–15/08 · Jasmine Phòng 42 · Anh Thái Phòng 76 · Buffet RUMBA 06:00–09:30 · Checkout đúng 10:30</div><span class="cr-who wco">Company pays</span></div><div class="cr-amt">—</div></div>
     <div class="cr"><div class="cr-left"><div class="cr-label">🏨 Sujet Marina Đà Nẵng by Haviland · 15–16/08 · Sáng có phụ phí 07:00–10:00 · Check-in 14h</div><span class="cr-who wt">Ông chã húi</span></div><div class="cr-amt">600,000đ</div></div>
     <div class="cr"><div class="cr-left"><div class="cr-label">🚂 Vé tàu HĐ2 · Toa 1 Ghế 1&amp;2 · 16/08 · 258k × 2</div><span class="cr-who wm">Bà chã hơm</span></div><div class="cr-amt">500,000đ</div></div>
     <div class="cr"><div class="cr-left"><div class="cr-label">🏨 Vina Vintage Hotel Huế · 16–17/08 · Không có sáng · Hủy đến 16/08 14:00</div><span class="cr-who wm">Bà chã hơm</span></div><div class="cr-amt">707,000đ</div></div>
@@ -1463,10 +1533,348 @@ body {
 
 </div><!-- /tab-chk -->
 
+<!-- ══════════ SOẠN ĐỒ ══════════ -->
+<div id="tab-pack" class="tab" role="tabpanel">
+
+  <!-- INTRO -->
+  <div class="pack-event" style="border-color:var(--cake-pink-200)">
+    <div class="pack-event-head" style="background:var(--bg-brand-subtle)">
+      <div class="pack-event-icon">🧳</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">Hướng dẫn dùng tab này</div>
+        <div class="pack-event-meta">Tick vào từng món đã soạn. 6 ngày · 3 thành phố · nhiều vibe khác nhau — đọc note từng sự kiện trước khi pack.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THÔNG TIN CHUYẾN -->
+  <div class="pack-event" style="border-color:#bfdbfe">
+    <div class="pack-event-head" style="background:var(--bg-info-subtle)">
+      <div class="pack-event-icon">📋</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name" style="color:#1d4ed8">Thông tin chuyến · cần biết nhanh</div>
+        <div class="pack-event-meta">Melia 12–15/08 · Cake Company Trip · Raise the Bar 2026</div>
+      </div>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" style="cursor:default"><div class="pack-cb" style="background:var(--bg-brand-subtle);border-color:var(--cake-pink-200);color:var(--fg-brand);font-size:10px">🏠</div><span class="pack-text">Phòng Melia: <strong>42</strong></span></li>
+            <li class="pack-item" style="cursor:default"><div class="pack-cb" style="background:var(--bg-brand-subtle);border-color:var(--cake-pink-200);color:var(--fg-brand);font-size:10px">🚌</div><span class="pack-text">Xe đoàn: <strong>Xe 5</strong></span></li>
+            <li class="pack-item" style="cursor:default"><div class="pack-cb" style="background:var(--bg-brand-subtle);border-color:var(--cake-pink-200);color:var(--fg-brand);font-size:10px">✈</div><span class="pack-text">Mã VJ chiều đi: <strong>54S7Q9</strong></span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" style="cursor:default"><div class="pack-cb" style="background:var(--bg-info-subtle);border-color:#bfdbfe;color:#1d4ed8;font-size:10px">🏠</div><span class="pack-text">Phòng Melia: <strong>76</strong></span></li>
+            <li class="pack-item" style="cursor:default"><div class="pack-cb" style="background:var(--bg-info-subtle);border-color:#bfdbfe;color:#1d4ed8;font-size:10px">🚌</div><span class="pack-text">Xe đoàn: <strong>Xe 2</strong></span></li>
+            <li class="pack-item" style="cursor:default"><div class="pack-cb" style="background:var(--bg-info-subtle);border-color:#bfdbfe;color:#1d4ed8;font-size:10px">✈</div><span class="pack-text">Vé chiều về: tự book</span></li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="padding:10px 12px;background:var(--bg-brand-subtle);border:1px solid var(--cake-pink-200);border-radius:var(--r-sm);font-size:11px;line-height:1.7">
+          <strong style="display:block;margin-bottom:3px;color:var(--fg-brand)">🚌 Xe 5 — Jasmine</strong>
+          <span style="color:var(--fg-secondary)">Trưởng xe: <strong style="color:var(--fg-primary)">Nga Lê</strong> · <a href="tel:0397821126" style="color:var(--fg-brand);text-decoration:none">0397821126</a><br>HDV: Tùng Lê · <a href="tel:0902093935" style="color:var(--fg-brand);text-decoration:none">0902093935</a></span>
+        </div>
+        <div style="padding:10px 12px;background:var(--bg-info-subtle);border:1px solid #bfdbfe;border-radius:var(--r-sm);font-size:11px;line-height:1.7">
+          <strong style="display:block;margin-bottom:3px;color:#1d4ed8">🚌 Xe 2 — Ông chã húi</strong>
+          <span style="color:var(--fg-secondary)">Trưởng xe: <strong style="color:var(--fg-primary)">Chi Nguyễn</strong> · <a href="tel:0909533733" style="color:#1d4ed8;text-decoration:none">0909533733</a><br>HDV: Sang Nguyễn · <a href="tel:0934875228" style="color:#1d4ed8;text-decoration:none">0934875228</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pack-event">
+    <div class="pack-event-head">
+      <div class="pack-event-icon">📦</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">Đồ dùng chung · pack 1 lần</div>
+        <div class="pack-event-meta">Dùng suốt chuyến, không phân theo ngày</div>
+      </div>
+      <span class="pack-event-badge pb-casual">Cả chuyến</span>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">CCCD / hộ chiếu</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Vé VietJet · mã đặt chỗ <strong>54S7Q9</strong></span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Power bank + cáp sạc</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">🌂 Ô gọn (mưa chiều ĐN + Hội An)</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Kem chống nắng SPF50+</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Nón/mũ rộng vành (Đại Nội Huế)</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Túi tote nhỏ đi chơi ban ngày</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Thuốc cá nhân + say xe/tàu</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">CCCD / hộ chiếu</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Vé VietJet · mã đặt chỗ cả 2 chiều</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Power bank + cáp sạc</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">🌂 Ô gọn</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Kem chống nắng SPF50+</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Nón/mũ rộng vành</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Thuốc cá nhân</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C-GAMES -->
+  <div class="pack-event">
+    <div class="pack-event-head">
+      <div class="pack-event-icon">🎮</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">C-Games · Nhà thi đấu Sơn Trà · 13/08 trưa</div>
+        <div class="pack-event-meta">Ngoài trời, nắng, vận động nhẹ. Dress code <strong>Áo Cake bắt buộc</strong>.</div>
+      </div>
+      <span class="pack-event-badge pb-dress">Áo Cake</span>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo Cake (công ty phát) — bắt buộc</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Quần thoải mái — jeans nhẹ hoặc jogger</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Sneakers hoặc giày bệt</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo Cake (công ty phát) — bắt buộc</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Quần thoải mái</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Sneakers</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKY NIGHT -->
+  <div class="pack-event">
+    <div class="pack-event-head">
+      <div class="pack-event-icon">🌃</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">Sky Night · Sky36 Tầng 36 Novotel · 13/08 tối</div>
+        <div class="pack-event-meta">Rooftop bar cao cấp · không có dress code chính thức nhưng nên mặc smart casual để hợp không gian. Điều hòa mạnh.</div>
+      </div>
+      <span class="pack-event-badge pb-smart">Smart Casual</span>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo/đầm thanh lịch — tránh quá casual</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Quần dài hoặc chân váy midi</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Heels thấp hoặc mules</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Khăn mỏng hoặc áo khoác nhẹ (lạnh ĐH)</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo polo hoặc sơ mi linen nhẹ</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Quần chino hoặc jeans xịn</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Giày sneakers clean hoặc loafer</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pack-tip">💡 Sau C-Games có thể thay đồ trước Sky Night — nên để outfit tối vào túi tote riêng mang theo</div>
+    </div>
+  </div>
+
+  <!-- SPOTLIGHT NIGHT -->
+  <div class="pack-event">
+    <div class="pack-event-head">
+      <div class="pack-event-icon">🎉</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">Spotlight Night · Holiday Beach Club · 14/08 tối</div>
+        <div class="pack-event-meta">BBQ ngoài trời, ven biển · Không gian phóng khoáng · Không có dress code nhưng theme beach/tropical phù hợp.</div>
+      </div>
+      <span class="pack-event-badge pb-beach">Beach Casual</span>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Đầm/set màu sáng — tropical vibe</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Sandal/dép đế bệt (ngoài trời, cát)</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Túi nhỏ đủ để phone + thẻ</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo sơ mi ngắn tay hoặc áo thun đẹp</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Short vải hoặc quần linen</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Sandal hoặc slip-on</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HỘI AN -->
+  <div class="pack-event">
+    <div class="pack-event-head">
+      <div class="pack-event-icon">🏮</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">Phố Cổ Hội An · 15/08 sáng đến chiều</div>
+        <div class="pack-event-meta">Đi bộ nhiều · nắng sáng · chụp ảnh check-in phố cổ · màu sắc là điểm nhấn ở đây.</div>
+      </div>
+      <span class="pack-event-badge pb-casual">Casual chic</span>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Đầm hoặc set màu pastel/trắng/vàng — ảnh đẹp</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">👡 Dép xỏ ngón hoặc sandal (đi bộ nhiều, phố cổ lát đá)</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Nón rộng vành (nắng + aesthetic)</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Túi rơm hoặc túi vải nhỏ</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo linen trắng/kem hoặc sơ mi nhẹ</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Quần linen hoặc chino sáng màu</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">👡 Sandal hoặc sneakers nhẹ</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Nón bucket hoặc nón kết</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pack-tip">📸 Hội An đẹp nhất lúc 9–10h sáng và 5–6h chiều · chọn màu outfit tương phản với đèn lồng đỏ/vàng để ảnh nổi hơn</div>
+    </div>
+  </div>
+
+  <!-- TREN 16/08 SANG -->
+  <div class="pack-event">
+    <div class="pack-event-head">
+      <div class="pack-event-icon">🚂</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">Tàu HĐ2 · Đà Nẵng → Huế · 16/08 sáng sớm</div>
+        <div class="pack-event-meta">~4h trên tàu · điều hòa mạnh · ngồi ngắm cảnh qua cửa sổ · xuất phát 07:05</div>
+      </div>
+      <span class="pack-event-badge pb-casual">Thoải mái</span>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Outfit thoải mái nhất — tracksuit, co-ord set, anything goes</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo khoác nhẹ hoặc cardigan (ĐH mạnh)</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Dép xỏ ngón hoặc sneakers nhẹ</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Tai nghe + snack nhỏ</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Outfit Đại Nội để sẵn trong vali — thay sau khi gửi đồ KS</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Outfit thoải mái — jogger hoặc shorts</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo khoác nhẹ hoặc hoodie mỏng</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Dép/sandal</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Outfit lịch sự để sẵn — thay khi nhận phòng hoặc gửi KS</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pack-tip">🪟 Ghế 1&2 phía biển — ngồi bên trái chiều đi tàu · mặc màu sáng để ảnh đèo Hải Vân đẹp · nhớ để outfit Đại Nội accessible trong vali, không nhét đáy</div>
+    </div>
+  </div>
+
+  <!-- THAM QUAN HUẾ 16/08 CHIỀU -->
+  <div class="pack-event">
+    <div class="pack-event-head">
+      <div class="pack-event-icon">🏯</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">Đại Nội + Thiên Mụ + Khải Định · 16/08 chiều</div>
+        <div class="pack-event-meta">Di tích trang nghiêm · nắng ~35–38°C · đi bộ nhiều · trang phục <strong>phải che vai và không được ngắn quá gối</strong>.</div>
+      </div>
+      <span class="pack-event-badge pb-formal">Lịch sự · kín</span>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo che vai — không hở lưng, không áo hai dây</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Chân váy midi hoặc quần dài/lửng dưới gối</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Giày/sandal bệt thoải mái — đi bộ ~3–4km</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Nón + chai nước uống</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Khăn mỏng đa năng (che nắng / lau mồ hôi)</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Áo thun hoặc sơ mi ngắn tay (không áo ba lỗ)</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Quần dài hoặc shorts dài quá gối</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Giày thoải mái / sneakers nhẹ</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Nón + chai nước</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pack-tip">⚠ Một số chùa + điện thờ trong Đại Nội yêu cầu tắt giày — mang dép xỏ ngón theo túi để tiện ra vào</div>
+    </div>
+  </div>
+
+  <!-- SÁNG CUỐI HUẾ 17/08 -->
+  <div class="pack-event">
+    <div class="pack-event-head">
+      <div class="pack-event-icon">🌅</div>
+      <div class="pack-event-info">
+        <div class="pack-event-name">Sáng dạo Huế + Cà phê + Mua quà · 17/08 sáng</div>
+        <div class="pack-event-meta">Dạo sông Hương · cà phê ven nước · Chợ Đông Ba mua quà · checkout 12h · ra sân bay 16:20</div>
+      </div>
+      <span class="pack-event-badge pb-casual">Casual nhẹ nhàng</span>
+    </div>
+    <div class="pack-body">
+      <div class="pack-grid">
+        <div>
+          <div class="pack-person-name">Jasmine</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Outfit nhẹ thoải mái — dạo phố, ngồi cà phê</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Sandal hoặc sneakers nhẹ</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Túi to hơn để nhét quà mua về</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pack-person-name">Ông chã húi</div>
+          <ul class="pack-list">
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Outfit thoải mái để đi lại + ngồi cà phê</span></li>
+            <li class="pack-item" onclick="pkToggle(this)"><div class="pack-cb"></div><span class="pack-text">Sandal/sneakers nhẹ</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pack-tip">✈ Ra sân bay Phú Bài lúc 16:20 — nên mặc outfit bay thoải mái từ sáng để không phải thay đồ sau checkout</div>
+    </div>
+  </div>
+
+</div><!-- /tab-pack -->
+
 </div><!-- /wrap -->
 
 <script>
 /* ── Accordion ── */
+function pkToggle(item) {
+  item.classList.toggle('pkd');
+  item.querySelector('.pack-cb').textContent = item.classList.contains('pkd') ? '✓' : '';
+}
+
 function toggleAcc(btn) {
   const expanded = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', !expanded);
